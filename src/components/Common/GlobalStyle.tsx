@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import { Global, css } from '@emotion/react';
 
 const defaultStyle = css`
@@ -11,6 +10,7 @@ const defaultStyle = css`
   html,
   body,
   #___gatsby {
+    width: 100%;
     height: 100%;
   }
 
@@ -28,8 +28,6 @@ const defaultStyle = css`
   }
 `;
 
-const GlobalStyle: FunctionComponent = function () {
+export default function GlobalStyle() {
   return <Global styles={defaultStyle} />;
-};
-
-export default GlobalStyle;
+}
