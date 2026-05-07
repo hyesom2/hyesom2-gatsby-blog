@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import GlobalStyle from '../components/Common/GlobalStyle';
+import Footer from '../components/Common/Footer';
 
 const Container = styled.div`
   display: flex;
@@ -12,6 +13,7 @@ export default function IndexPage() {
   return (
     <Container>
       <GlobalStyle />
+      <Footer />
     </Container>
   );
 }
