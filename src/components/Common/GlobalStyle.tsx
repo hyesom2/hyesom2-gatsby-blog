@@ -22,6 +22,15 @@ const defaultStyle = css`
     cursor: pointer;
   }
 
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    border: none;
+    outline: none;
+  }
+
   ul,
   ol {
     list-style: none;
