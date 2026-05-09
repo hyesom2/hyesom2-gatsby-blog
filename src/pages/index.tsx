@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import GlobalStyle from '../components/Common/GlobalStyle';
 import Menu from '../components/Common/Menu';
+import PostList from '../components/Main/PostList';
 import Footer from '../components/Common/Footer';
 
 const Container = styled.div`
@@ -23,6 +24,7 @@ export default function IndexPage() {
     <Container>
       <GlobalStyle />
       <Menu />
+      <PostList />
       <Footer />
     </Container>
   );
