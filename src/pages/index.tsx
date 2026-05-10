@@ -3,6 +3,13 @@ import GlobalStyle from '../components/Common/GlobalStyle';
 import Menu from '../components/Common/Menu';
 import PostList from '../components/Main/PostList';
 import Footer from '../components/Common/Footer';
+import CategoryList from '../components/Main/CategoryList';
+
+const CATEGORY_LIST = {
+  All: 5,
+  Web: 3,
+  Mobile: 1,
+};
 
 const Container = styled.div`
   display: flex;
@@ -24,6 +31,7 @@ export default function IndexPage() {
     <Container>
       <GlobalStyle />
       <Menu />
+      <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
       <PostList />
       <Footer />
     </Container>
