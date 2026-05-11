@@ -1,16 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-
-type PostItemProps = {
-  title: string;
-  date: string;
-  categories: string[];
-  summary: string;
-  thumbnail: {
-    publicURL: string;
-  };
-  link: string;
-};
+import type { PostFrontmatterType } from 'src/types/PostItem.types';
 
 const PostItemWrapper = styled(Link)`
   display: flex;
@@ -91,9 +81,9 @@ export default function PostItem({
   summary,
   thumbnail: { publicURL },
   link,
-}: PostItemProps) {
+}: PostFrontmatterType) {
   return (
-    <PostItemWrapper to={link}>
+    <PostItemWrapper to={link || '#'}>
       <ThumbnailImage src={publicURL} alt={title} />
 
       <PostItemContent>

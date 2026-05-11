@@ -2,8 +2,9 @@ import Footer from '@components/Common/Footer';
 import GlobalStyle from '@components/Common/GlobalStyle';
 import Menu from '@components/Common/Menu';
 import CategoryList from '@components/Main/CategoryList';
-import PostList, { PostType } from '@components/Main/PostList';
+import PostList from '@components/Main/PostList';
 import styled from '@emotion/styled';
+import type { PostListItemType } from '@type/PostItem.types';
 import { graphql } from 'gatsby';
 
 const CATEGORY_LIST = {
@@ -30,23 +31,7 @@ const Container = styled.div`
 type IndexPageProps = {
   data: {
     allMarkdownRemark: {
-      edges: PostType[];
-      // edges: [
-      //   {
-      //     node: {
-      //       id: string;
-      //       frontmatter: {
-      //         title: string;
-      //         summary: string;
-      //         date: string;
-      //         categories: string[];
-      //         thumbnail: {
-      //           publicURL: string;
-      //         };
-      //       };
-      //     };
-      //   },
-      // ];
+      edges: PostListItemType[];
     };
   };
 };

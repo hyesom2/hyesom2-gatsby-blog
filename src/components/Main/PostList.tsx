@@ -1,19 +1,9 @@
 import PostItem from '@components/Main/PostItem';
 import styled from '@emotion/styled';
+import type { PostListItemType } from '@type/PostItem.types';
 
-export type PostType = {
-  node: {
-    id: string;
-    frontmatter: {
-      title: string;
-      summary: string;
-      date: string;
-      categories: string[];
-      thumbnail: {
-        publicURL: string;
-      };
-    };
-  };
+type PostListProps = {
+  posts: PostListItemType[];
 };
 
 const PostListWrapper = styled.div`
@@ -29,14 +19,10 @@ const PostListWrapper = styled.div`
   }
 `;
 
-type PostListProps = {
-  posts: PostType[];
-};
-
 export default function PostList({ posts }: PostListProps) {
   return (
     <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }: PostType) => (
+      {posts.map(({ node: { id, frontmatter } }: PostListItemType) => (
         <PostItem key={id} {...frontmatter} link="https://www.google.co.kr" />
       ))}
     </PostListWrapper>
