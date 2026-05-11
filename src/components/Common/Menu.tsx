@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Search, Menu as MenuIcon } from 'lucide-react';
+import { Menu as MenuIcon, Search } from 'lucide-react';
 
 const Nav = styled.nav`
   position: fixed;

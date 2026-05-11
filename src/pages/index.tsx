@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+
+import Footer from '../components/Common/Footer';
 import GlobalStyle from '../components/Common/GlobalStyle';
 import Menu from '../components/Common/Menu';
-import PostList from '../components/Main/PostList';
-import Footer from '../components/Common/Footer';
 import CategoryList from '../components/Main/CategoryList';
+import PostList from '../components/Main/PostList';
 
 const CATEGORY_LIST = {
   All: 5,

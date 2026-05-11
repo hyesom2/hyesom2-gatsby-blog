@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import PostItem from './PostItem';
 
 const POST_ITEM_DATA = {
