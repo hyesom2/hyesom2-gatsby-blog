@@ -1,16 +1,19 @@
+import PostItem from '@components/Main/PostItem';
 import styled from '@emotion/styled';
 
-import PostItem from './PostItem';
-
-const POST_ITEM_DATA = {
-  title: '블로그 글 제목 예시',
-  date: '2026.05.08',
-  categories: ['카테고리1', '카테고리2', '카테고리3'],
-  summary:
-    '블로그 글 요약 예시입니다. 이 글은 블로그 글 요약 예시입니다.블로그 글 요약 예시입니다. 이 글은 블로그 글 요약 예시입니다.블로그 글 요약 예시입니다. 이 글은 블로그 글 요약 예시입니다.블로그 글 요약 예시입니다. 이 글은 블로그 글 요약 예시입니다.',
-  thumbnail:
-    'https://cdn.pixabay.com/photo/2023/08/21/23/14/tulips-8205190_1280.jpg',
-  link: '<https://www.google.co.kr>',
+export type PostType = {
+  node: {
+    id: string;
+    frontmatter: {
+      title: string;
+      summary: string;
+      date: string;
+      categories: string[];
+      thumbnail: {
+        publicURL: string;
+      };
+    };
+  };
 };
 
 const PostListWrapper = styled.div`
@@ -26,12 +29,16 @@ const PostListWrapper = styled.div`
   }
 `;
 
-export default function PostList() {
+type PostListProps = {
+  posts: PostType[];
+};
+
+export default function PostList({ posts }: PostListProps) {
   return (
     <PostListWrapper>
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
+      {posts.map(({ node: { id, frontmatter } }: PostType) => (
+        <PostItem key={id} {...frontmatter} link="https://www.google.co.kr" />
+      ))}
     </PostListWrapper>
   );
 }

@@ -6,7 +6,9 @@ type PostItemProps = {
   date: string;
   categories: string[];
   summary: string;
-  thumbnail: string;
+  thumbnail: {
+    publicURL: string;
+  };
   link: string;
 };
 
@@ -87,12 +89,12 @@ export default function PostItem({
   date,
   categories,
   summary,
-  thumbnail,
+  thumbnail: { publicURL },
   link,
 }: PostItemProps) {
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage src={thumbnail} alt={title} />
+      <ThumbnailImage src={publicURL} alt={title} />
 
       <PostItemContent>
         <Title>{title}</Title>

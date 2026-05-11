@@ -1,10 +1,10 @@
+import Footer from '@components/Common/Footer';
+import GlobalStyle from '@components/Common/GlobalStyle';
+import Menu from '@components/Common/Menu';
+import CategoryList from '@components/Main/CategoryList';
+import PostList, { PostType } from '@components/Main/PostList';
 import styled from '@emotion/styled';
-
-import Footer from '../components/Common/Footer';
-import GlobalStyle from '../components/Common/GlobalStyle';
-import Menu from '../components/Common/Menu';
-import CategoryList from '../components/Main/CategoryList';
-import PostList from '../components/Main/PostList';
+import { graphql } from 'gatsby';
 
 const CATEGORY_LIST = {
   All: 5,
@@ -27,14 +27,65 @@ const Container = styled.div`
   }
 `;
 
-export default function IndexPage() {
+type IndexPageProps = {
+  data: {
+    allMarkdownRemark: {
+      edges: PostType[];
+      // edges: [
+      //   {
+      //     node: {
+      //       id: string;
+      //       frontmatter: {
+      //         title: string;
+      //         summary: string;
+      //         date: string;
+      //         categories: string[];
+      //         thumbnail: {
+      //           publicURL: string;
+      //         };
+      //       };
+      //     };
+      //   },
+      // ];
+    };
+  };
+};
+
+export default function IndexPage({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}: IndexPageProps) {
   return (
     <Container>
       <GlobalStyle />
       <Menu />
       <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
-      <PostList />
+      <PostList posts={edges} />
       <Footer />
     </Container>
   );
 }
+
+export const getPostList = graphql`
+  query getPostList {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            summary
+            date(formatString: "YYYY.MM.DD.")
+            categories
+            thumbnail {
+              publicURL
+            }
+          }
+        }
+      }
+    }
+  }
+`;
