@@ -1,6 +1,17 @@
 import { Global, css } from '@emotion/react';
 
 const defaultStyle = css`
+  :root {
+    --color-white: #fff;
+    --color-light-gray1: #eff0f3;
+    --color-light-gray2: #e4e5e9;
+    --color-gray: #c0c0c0;
+    --color-dark-gray: #9a9494;
+    --color-black: #2b2c34;
+    --color-primary: #ffde59;
+    --color-secondary: #f8e86d;
+  }
+
   * {
     margin: 0;
     padding: 0;
