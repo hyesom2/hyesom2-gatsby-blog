@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import logo from '@images/logo.png';
 import { Menu as MenuIcon, Search } from 'lucide-react';
 
 const Nav = styled.nav`
@@ -10,14 +11,14 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 40px;
+  height: 60px;
   padding: 0 20px;
   background-color: #fff;
   z-index: 100;
 
   @media (min-width: 768px) {
     max-width: 768px;
-    height: 60px;
+    height: 80px;
     margin: 0 auto;
   }
 `;
@@ -34,7 +35,13 @@ const Logo = styled.h1`
     height: 40px;
     border: 1px solid #eee;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: var(--color-white);
+    object-fit: cover;
+
+    @media (min-width: 768px) {
+      width: 60px;
+      height: 60px;
+    }
   }
 `;
 
@@ -94,7 +101,7 @@ export default function Menu() {
     <Nav>
       <Logo>
         <a href="/">
-          <img src="" alt="logo" />
+          <img src={logo} alt="main logo" />
         </a>
       </Logo>
 
