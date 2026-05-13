@@ -22,9 +22,17 @@ const PostListWrapper = styled.div`
 export default function PostList({ posts }: PostListProps) {
   return (
     <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }: PostListItemType) => (
-        <PostItem key={id} {...frontmatter} link="https://www.google.co.kr" />
-      ))}
+      {posts.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostListItemType) => (
+          <PostItem key={id} link={slug} {...frontmatter} />
+        ),
+      )}
     </PostListWrapper>
   );
 }
