@@ -35,3 +35,70 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
     });
   }
 };
+
+type AllMarkdownDataQuery = {
+  allMarkdownRemark: {
+    edges: {
+      node: {
+        fields: {
+          slug: string;
+        };
+      };
+    }[];
+  };
+};
+
+export const createPages: GatsbyNode['createPages'] = async ({
+  actions,
+  graphql,
+  reporter,
+}) => {
+  const { createPage } = actions;
+
+  // Get All Markdown File For Paging
+  const queryAllMarkdownData = await graphql<AllMarkdownDataQuery>(`
+    {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+      ) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  // Handling GraphQL Query Error
+  if (queryAllMarkdownData.errors) {
+    reporter.panicOnBuild(`Error while running query`);
+    return;
+  }
+
+  // Import Post Template Component
+  const PostTemplateComponent = path.resolve(
+    __dirname,
+    'src/templates/post_template.tsx',
+  );
+
+  // Page Generating Function
+  const generatePostPage = ({
+    node: {
+      fields: { slug },
+    },
+  }: AllMarkdownDataQuery['allMarkdownRemark']['edges'][0]) => {
+    const pageOptions = {
+      path: slug,
+      component: PostTemplateComponent,
+      context: { slug },
+    };
+
+    createPage(pageOptions);
+  };
+
+  // Generate Post Page And Passing Slug Props for Query
+  queryAllMarkdownData.data?.allMarkdownRemark.edges.forEach(generatePostPage);
+};
