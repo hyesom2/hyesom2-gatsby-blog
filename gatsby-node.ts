@@ -1,4 +1,5 @@
 import type { GatsbyNode } from 'gatsby';
+import { createFilePath } from 'gatsby-source-filesystem';
 import path from 'path';
 
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
@@ -15,4 +16,22 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
       },
     },
   });
+};
+
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({
+  node,
+  actions,
+  getNode,
+}) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode });
+
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug,
+    });
+  }
 };
