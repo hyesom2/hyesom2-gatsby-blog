@@ -57,9 +57,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   // Get All Markdown File For Paging
   const queryAllMarkdownData = await graphql<AllMarkdownDataQuery>(`
-    {
+    query getAllMarkdownData {
       allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+        sort: [
+          { frontmatter: { date: DESC } }
+          { frontmatter: { title: DESC } }
+        ]
       ) {
         edges {
           node {
