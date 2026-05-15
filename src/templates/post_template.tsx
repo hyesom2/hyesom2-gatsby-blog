@@ -1,12 +1,46 @@
 import Template from '@components/Common/Template';
+import PostHead from '@components/Post/PostHead';
+import { PostPageItemType } from '@type/PostItem.types';
 import { graphql } from 'gatsby';
 
-type PostTemplateProps = {};
+type PostTemplateProps = {
+  data: {
+    allMarkdownRemark: {
+      edges: PostPageItemType[];
+    };
+  };
+};
 
-export default function PostTemplate(props: PostTemplateProps) {
-  console.log(props);
+export default function PostTemplate({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}: PostTemplateProps) {
+  const {
+    node: {
+      html,
+      frontmatter: {
+        title,
+        summary, // 나중에 사용할 예정입니다!
+        date,
+        categories,
+        thumbnail: {
+          childImageSharp: { gatsbyImageData },
+        },
+      },
+    },
+  } = edges[0];
 
-  return <Template>Post Template</Template>;
+  return (
+    <Template>
+      <PostHead
+        title={title}
+        date={date}
+        categories={categories}
+        thumbnail={gatsbyImageData}
+      />
+    </Template>
+  );
 }
 
 export const queryMarkdownDataBySlug = graphql`
