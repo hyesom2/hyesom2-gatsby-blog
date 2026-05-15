@@ -1,5 +1,6 @@
 import Template from '@components/Common/Template';
 import CategoryList from '@components/Main/CategoryList';
+import Introduction from '@components/Main/Introduction';
 import PostList from '@components/Main/PostList';
 import type { PostListItemType } from '@type/PostItem.types';
 import { graphql } from 'gatsby';
@@ -32,9 +33,9 @@ export default function IndexPage({
   location: { search },
   data: {
     allMarkdownRemark: { edges },
-    // file: {
-    //   childImageSharp: { gatsbyImageData },
-    // },
+    file: {
+      childImageSharp: { gatsbyImageData },
+    },
   },
 }: IndexPageProps) {
   const parsed: ParsedQuery<string> = queryString.parse(search);
@@ -45,6 +46,7 @@ export default function IndexPage({
 
   return (
     <Template>
+      <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={CATEGORY_LIST}
@@ -81,7 +83,7 @@ export const getPostList = graphql`
     }
     file(name: { eq: "profile-image" }) {
       childImageSharp {
-        gatsbyImageData(width: 120, height: 120)
+        gatsbyImageData(width: 350, height: 350, quality: 100)
       }
     }
   }

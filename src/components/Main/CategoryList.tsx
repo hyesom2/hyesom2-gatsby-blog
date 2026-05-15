@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 type CategoryListProps = {
   selectedCategory: string;
   categoryList: {
-    [key: string]: number; // property string : value number
+    [key: string]: number;
   };
 };
 
@@ -22,7 +22,7 @@ const CategoryListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 768px;
-  margin: 100px auto 0;
+  margin: 50px auto 0;
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
