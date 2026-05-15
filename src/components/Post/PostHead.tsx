@@ -26,8 +26,7 @@ const BackgroundHeadImage = styled((props: GatsbyImageProps) => (
   width: 100%;
   height: 400px;
   object-fit: cover;
-  background-color: var(--color-light-gray1);
-  filter: brightness(0.25);
+  filter: brightness(0.7);
 `;
 
 export default function PostHead({

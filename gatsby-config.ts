@@ -11,9 +11,7 @@ const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
   plugins: [
     'gatsby-plugin-emotion',
-    'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -24,16 +22,15 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: './src/images/',
+        name: 'contents',
+        path: `${__dirname}/contents`,
       },
-      __key: 'images',
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'contents',
-        path: `${__dirname}/contents`,
+        name: 'images',
+        path: `${__dirname}/static`,
       },
     },
     {
@@ -72,6 +69,16 @@ const config: GatsbyConfig = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaults: {
+          formats: ['auto', 'webp'],
+          quality: 100,
+          placeholder: 'none',
+        },
       },
     },
   ],
