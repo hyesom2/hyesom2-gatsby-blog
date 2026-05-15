@@ -1,3 +1,4 @@
+import Template from '@components/Common/Template';
 import { graphql } from 'gatsby';
 
 type PostTemplateProps = {};
@@ -5,7 +6,7 @@ type PostTemplateProps = {};
 export default function PostTemplate(props: PostTemplateProps) {
   console.log(props);
 
-  return <div>Post Template</div>;
+  return <Template>Post Template</Template>;
 }
 
 export const queryMarkdownDataBySlug = graphql`

@@ -1,9 +1,6 @@
-import Footer from '@components/Common/Footer';
-import GlobalStyle from '@components/Common/GlobalStyle';
-import Menu from '@components/Common/Menu';
+import Template from '@components/Common/Template';
 import CategoryList from '@components/Main/CategoryList';
 import PostList from '@components/Main/PostList';
-import styled from '@emotion/styled';
 import type { PostListItemType } from '@type/PostItem.types';
 import { graphql } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
@@ -31,27 +28,12 @@ const CATEGORY_LIST = {
   Mobile: 1,
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding-top: 40px;
-
-  @media (min-width: 768px) {
-    max-width: 768px;
-    padding-top: 60px;
-    margin: 0 auto;
-  }
-`;
-
 export default function IndexPage({
   location: { search },
   data: {
     allMarkdownRemark: { edges },
     // file: {
-    // childImageSharp: { gatsbyImageData },
+    //   childImageSharp: { gatsbyImageData },
     // },
   },
 }: IndexPageProps) {
@@ -62,16 +44,13 @@ export default function IndexPage({
       : parsed.category;
 
   return (
-    <Container>
-      <GlobalStyle />
-      <Menu />
+    <Template>
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={CATEGORY_LIST}
       />
       <PostList posts={edges} />
-      <Footer />
-    </Container>
+    </Template>
   );
 }
 
