@@ -17,8 +17,6 @@ function useTypingEffect(texts: string[]) {
   const textIndexRef = useRef(0);
   const isDeletingRef = useRef(false);
   const displayTextRef = useRef('');
-  // const [textIndex, setTextIndex] = useState(0);
-  // const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -28,13 +26,11 @@ function useTypingEffect(texts: string[]) {
       const current = displayTextRef.current;
 
       if (!isDeletingRef.current) {
-        // 타이핑 중
         const next = currentText.slice(0, current.length + 1);
         displayTextRef.current = next;
         setDisplayText(next);
 
         if (next === currentText) {
-          // 완성 → 대기 후 삭제 시작
           timeout = setTimeout(() => {
             isDeletingRef.current = true;
             tick();
@@ -42,13 +38,11 @@ function useTypingEffect(texts: string[]) {
           return;
         }
       } else {
-        // 지우는 중
         const next = currentText.slice(0, current.length - 1);
         displayTextRef.current = next;
         setDisplayText(next);
 
         if (next === '') {
-          // 다 지움 → 다음 텍스트로
           isDeletingRef.current = false;
           textIndexRef.current = (textIndexRef.current + 1) % texts.length;
         }
@@ -66,6 +60,11 @@ function useTypingEffect(texts: string[]) {
   }, [texts]);
 
   return displayText;
+}
+
+function TypingDisplay({ texts }: { texts: string[] }) {
+  const typingText = useTypingEffect(texts); // state가 여기 있음
+  return <TypingText>{typingText}</TypingText>;
 }
 
 const Background = styled.section`
@@ -118,15 +117,13 @@ const TypingText = styled.strong`
 `;
 
 export default function Introduction({ profileImage }: IntroductionProps) {
-  const typingText = useTypingEffect(TYPING_TEXT);
-
   return (
     <Background aria-label="블로그 소개">
       <Wrapper>
         <Description>
           안녕하세요!
           <br />
-          <TypingText>{typingText}</TypingText>를 좋아하는
+          <TypingDisplay texts={TYPING_TEXT} />를 좋아하는
           <br />
           개발자 김현주 입니다.
         </Description>
