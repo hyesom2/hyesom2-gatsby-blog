@@ -14,6 +14,7 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
         '@type': path.resolve(__dirname, 'src/types'),
         '@contents': path.resolve(__dirname, 'contents'),
         '@templates': path.resolve(__dirname, 'src/templates'),
+        '@hooks': path.resolve(__dirname, 'src/hooks'),
       },
     },
   });
