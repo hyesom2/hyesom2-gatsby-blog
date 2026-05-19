@@ -63,14 +63,14 @@ function useTypingEffect(texts: string[]) {
 }
 
 function TypingDisplay({ texts }: { texts: string[] }) {
-  const typingText = useTypingEffect(texts); // state가 여기 있음
+  const typingText = useTypingEffect(texts);
   return <TypingText>{typingText}</TypingText>;
 }
 
 const Background = styled.section`
   width: 100%;
-  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  color: #ffffff;
+  background-color: var(--color-white);
+  color: var(--color-black);
 `;
 
 const Wrapper = styled.div`
@@ -99,16 +99,16 @@ const Description = styled.p`
 `;
 
 const TypingText = styled.strong`
-  color: #f9ca24;
+  color: var(--color-primary);
   font-weight: 700;
-  border-right: 2px solid #f9ca24;
+  border-right: 2px solid var(--color-primary);
   padding-right: 2px;
   animation: blink 1s step-end infinite;
 
   @keyframes blink {
     0%,
     100% {
-      border-color: #f9ca24;
+      border-color: var(--color-primary);
     }
     50% {
       border-color: transparent;
