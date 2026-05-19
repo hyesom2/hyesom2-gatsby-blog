@@ -8,11 +8,16 @@ const PostItemWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-light-gray1);
   border-radius: 10px;
   padding: 20px;
   overflow: hidden;
   gap: 20px;
+
+  &:hover {
+    outline: 1px solid var(--color-light-gray2);
+    outline-width: 2px;
+  }
 `;
 
 const PostItemHeader = styled.header`
@@ -25,9 +30,10 @@ const PostItemHeader = styled.header`
 const ThumbnailImage = styled(GatsbyImage)`
   width: 100%;
   height: 200px;
+  border: 1px solid var(--color-light-gray1);
   border-radius: 8px;
-  object-fit: cover;
   margin-bottom: 20px;
+  object-fit: cover;
 `;
 
 const Title = styled.h2`
@@ -40,6 +46,7 @@ const Title = styled.h2`
   -webkit-box-orient: vertical;
   font-size: 16px;
   font-weight: 700;
+  color: var(--color-black);
   margin-bottom: 8px;
 
   @media (min-width: 768px) {
@@ -67,10 +74,6 @@ const PostItemContent = styled.div`
   justify-content: start;
   align-items: center;
   gap: 16px;
-
-  &:hover {
-    font-weight: 700;
-  }
 `;
 
 const ProfileImage = styled.img`
@@ -94,11 +97,11 @@ const PostItemEtc = styled.div`
 const Date = styled.span`
   font-size: 14px;
   font-weight: 400;
-  color: gray;
+  color: var(--color-gray);
 `;
 
 const Summary = styled.p`
-  display: -webkit-box;
+  display: block;
   text-overflow: ellipsis;
   white-space: normal;
   overflow: hidden;
@@ -106,7 +109,7 @@ const Summary = styled.p`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-size: 16px;
-  color: gray;
+  color: var(--color-gray);
 `;
 
 export default function PostItem({
