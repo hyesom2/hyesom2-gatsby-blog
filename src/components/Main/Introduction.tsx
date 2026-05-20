@@ -1,66 +1,13 @@
 import ProfileImage from '@components/Main/ProfileImage';
 import styled from '@emotion/styled';
+import { useTypingEffect } from '@hooks/useTypingEffect';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import { useEffect, useRef, useState } from 'react';
 
 type IntroductionProps = {
   profileImage: IGatsbyImageData;
 };
 
 const TYPING_TEXT = ['FrontEnd', 'Next.js', 'React', 'TypeScript'];
-const TYPING_SPEED = 100;
-const TYPING_DELETE_SPEED = 60;
-const TYPING_DELAY = 1500;
-
-function useTypingEffect(texts: string[]) {
-  const [displayText, setDisplayText] = useState('');
-  const textIndexRef = useRef(0);
-  const isDeletingRef = useRef(false);
-  const displayTextRef = useRef('');
-
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-
-    const tick = () => {
-      const currentText = texts[textIndexRef.current];
-      const current = displayTextRef.current;
-
-      if (!isDeletingRef.current) {
-        const next = currentText.slice(0, current.length + 1);
-        displayTextRef.current = next;
-        setDisplayText(next);
-
-        if (next === currentText) {
-          timeout = setTimeout(() => {
-            isDeletingRef.current = true;
-            tick();
-          }, TYPING_DELAY);
-          return;
-        }
-      } else {
-        const next = currentText.slice(0, current.length - 1);
-        displayTextRef.current = next;
-        setDisplayText(next);
-
-        if (next === '') {
-          isDeletingRef.current = false;
-          textIndexRef.current = (textIndexRef.current + 1) % texts.length;
-        }
-      }
-
-      timeout = setTimeout(
-        tick,
-        isDeletingRef.current ? TYPING_DELETE_SPEED : TYPING_SPEED,
-      );
-    };
-
-    timeout = setTimeout(tick, TYPING_SPEED);
-
-    return () => clearTimeout(timeout);
-  }, [texts]);
-
-  return displayText;
-}
 
 function TypingDisplay({ texts }: { texts: string[] }) {
   const typingText = useTypingEffect(texts);
