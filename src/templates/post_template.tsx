@@ -1,4 +1,5 @@
 import Template from '@components/Common/Template';
+import PostContent from '@components/Post/PostContent';
 import PostHead from '@components/Post/PostHead';
 import { PostPageItemType } from '@type/PostItem.types';
 import { graphql } from 'gatsby';
@@ -39,6 +40,7 @@ export default function PostTemplate({
         categories={categories}
         thumbnail={gatsbyImageData}
       />
+      <PostContent html={html} />
     </Template>
   );
 }
