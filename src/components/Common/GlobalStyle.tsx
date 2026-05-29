@@ -41,11 +41,6 @@ const defaultStyle = css`
     border: none;
     outline: none;
   }
-
-  ul,
-  ol {
-    list-style: none;
-  }
 `;
 
 export default function GlobalStyle() {
