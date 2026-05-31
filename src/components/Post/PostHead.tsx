@@ -16,7 +16,11 @@ type PostHeadProps = PostHeadInfoProps & {
 const PostHeadWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 250px;
+
+  @media (min-width: 768px) {
+    height: 400px;
+  }
 `;
 
 const BackgroundHeadImage = styled((props: GatsbyImageProps) => (
@@ -24,9 +28,13 @@ const BackgroundHeadImage = styled((props: GatsbyImageProps) => (
 ))`
   z-index: -1;
   width: 100%;
-  height: 400px;
+  height: 250px;
   object-fit: cover;
   filter: brightness(0.7);
+
+  @media (min-width: 768px) {
+    height: 400px;
+  }
 `;
 
 export default function PostHead({

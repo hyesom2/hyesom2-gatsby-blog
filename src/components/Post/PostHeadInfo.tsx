@@ -9,11 +9,16 @@ export type PostHeadInfoProps = {
 const PostHeadInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 768px;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 60px;
+  padding: 20px;
   color: var(--color-white);
+
+  @media (min-width: 768px) {
+    width: 768px;
+    padding: 60px;
+  }
 `;
 
 const PostTitle = styled.div`

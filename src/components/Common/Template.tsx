@@ -13,7 +13,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-top: 40px;
+  padding-top: 60px;
 
   @media (min-width: 768px) {
     max-width: 768px;

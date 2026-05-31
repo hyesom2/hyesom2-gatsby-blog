@@ -10,7 +10,7 @@ const MarkdownRenderer = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
-  padding: 80px 20px;
+  padding: 40px 20px;
   word-break: break-all;
 
   // Markdown Style
